@@ -16,6 +16,8 @@ input {
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: 700px;
-  height: 50px;
+  text-align: center;
+  width: 300px;
+  height: auto;
+background-color: rgba(127, 255, 212, 0.356);
 }
