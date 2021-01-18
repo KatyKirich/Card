@@ -4,26 +4,22 @@ const desk = document.querySelector(".desk");
 
 function showCard() {
   data.forEach((item) => {
-    desk.innerHTML += ` <div><p>Title:${item.title}</p>
-      <p>Description: ${item.description}</p>
-    <button id="button">Delete</button>
-  <button id="button">Edit</button></div> <br>
+    desk.innerHTML += ` <div class = "card"><p class = "title">Title:${item.title}</p>
+      <p  class = "description">Description: ${item.description}</p>
+    <button id="delBtn">Delete</button>
+  <button id="editBtn">Edit</button></div> <br>
   <br>`;
   });
 }
 
-const button = document.getElementById("button");
+function getSearch(event) {
+ const div = event.target.closest(".card");
 
-function getSearch() {}
+ console.log(div)
+  
+}
 
-button.addEventListener("click", (event) => {
-  if (event.target.closest("#button")) {
-    if (event.target.textContent === "Delete") {
-    }
-    if (event.target.textContent === "Edit") {
-    }
-  }
-});
+
 
 btnSubmit.addEventListener("click", (event) => {
   event.preventDefault();
@@ -31,7 +27,18 @@ btnSubmit.addEventListener("click", (event) => {
   const dscr = document.getElementById("description");
 
   data.push({ title: title.value, description: dscr.value });
-  console.log(data);
-
+ 
   showCard();
 });
+
+desk.addEventListener("click", (event) => {
+  event.preventDefault();
+  if (event.target.closest("#delBtn")) {
+    
+      getSearch()
+    }
+    if (event.target.closest("#editBtn")) {
+      getSearch()
+    }
+  }
+);
