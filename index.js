@@ -19,11 +19,16 @@ function getSearch(event) {
   const cardTitle = div.querySelector(".title").textContent;
   const cardDscr = div.querySelector(".description").textContent;
 
-  data.forEach(function (elem, index) {
+  const index = data.forEach(function (elem, index) {
     if (elem.title === cardTitle && elem.description === cardDscr) {
-      console.log(index);
-    }
+      return index;
+          }
   });
+}
+
+function delArray(num){
+ data.splice(num , 1)
+ showCard()
 }
 
 btnSubmit.addEventListener("click", (event) => {
@@ -40,6 +45,7 @@ desk.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.closest("#delBtn")) {
     getSearch(event);
+    delArray(index)
   }
   if (event.target.closest("#editBtn")) {
     getSearch(event);
