@@ -1,6 +1,7 @@
 const btnSubmit = document.getElementById("btnSubmit");
 const data = [];
 const desk = document.querySelector(".desk");
+let index;
 
 function showCard() {
   desk.innerHTML = "";
@@ -19,7 +20,7 @@ function getSearch(event) {
   const cardTitle = div.querySelector(".title").textContent;
   const cardDscr = div.querySelector(".description").textContent;
 
-  const index = data.forEach(function (elem, index) {
+  index = data.forEach(function (elem, index) {
     if (elem.title === cardTitle && elem.description === cardDscr) {
       return index;
           }
