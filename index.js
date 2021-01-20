@@ -13,6 +13,9 @@ const closeBtn = document.getElementById("closeBtn");
 let newT;
 let newD;
 
+
+
+
 function showCard() {
   desk.innerHTML = ""; //очищаем доску, чтобы оно не отрисовывало по нарастающей каждый раз новый массив
 
@@ -25,6 +28,8 @@ function showCard() {
   });
 }
 
+
+
 function getSearch(event) {
   const div = event.target.closest(".card");
 
@@ -34,9 +39,9 @@ function getSearch(event) {
   inpT.value = cardTitle;
   inpD.value = cardDscr;
 
-  data.forEach(function (elem, index) {
+  data.forEach(function (elem, ind) {
     if (elem.title === cardTitle && elem.description === cardDscr) {
-      index = index;
+      index = ind;
     }
     console.log(index);
   });
@@ -47,7 +52,17 @@ function getSearch(event) {
   // console.log(ind);
 }
 
+function redactCard(num) {
+  newT = inpT.value;
+  newD = inpD.value;
+
+  data.splice(num, 1, { title: newT, description: newD });
+  showCard();
+}
+
+
 function delArray(num) {
+  console.log(index)
   data.splice(num, 1);
   showCard();
 }
@@ -56,13 +71,7 @@ function closeModal() {
   modal.style.display = "none";
 }
 
-function redactCard(num) {
-  newT = inpT.value;
-  newD = inpD.value;
 
-  data.splice(num, 1, { title: newT, description: newD });
-  showCard();
-}
 
 btnSubmit.addEventListener("click", (event) => {
   event.preventDefault();
@@ -80,6 +89,7 @@ desk.addEventListener("click", (event) => {
   event.preventDefault();
   if (event.target.closest("#delBtn")) {
     getSearch(event);
+    console.log(index)
     delArray(index);
   }
   if (event.target.closest("#editBtn")) {
@@ -87,16 +97,16 @@ desk.addEventListener("click", (event) => {
 
     getSearch(event);
 
-    // найти и открыть модалку, дисплей блок. два инпута и кнопки в файле html. передаем значение карточки в инпуты в форме. заменяем отредактированный элемент
   }
 });
+
 
 closeBtn.addEventListener("click", () => {
   closeModal();
 });
 
+
 saveBtn.addEventListener("click", () => {
   closeModal();
-  console.log(index);
   redactCard(index);
 });
